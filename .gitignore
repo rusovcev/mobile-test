@@ -1,0 +1,22 @@
+# FOLDERs
+.vscode
+__pycache__
+bin
+.buildozer
+
+# PYCs
+*.pyc
+
+# LOGs
+*.log
+
+# CONFIGs
+# *config*.py
+
+# .BAK files
+*.bak
+
+# JSONs
+# *.json
+
+buildozer.spec
