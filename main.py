@@ -1,50 +1,36 @@
-'''
-TabbedPanel
-============
-
-Test of the widget TabbedPanel.
-'''
-
 from kivy.app import App
-from kivy.uix.tabbedpanel import TabbedPanel
 from kivy.lang import Builder
+from kivy.uix.screenmanager import Screen
+from kivy.uix.button import ButtonBehavior
+from kivy.uix.image import Image
+from grid import GridRow
+import requests
+import json
 
-Builder.load_string("""
+class HomeScreen(Screen):
+    pass
 
-<Test>:
-    size_hint: .5, .5
-    pos_hint: {'center_x': .5, 'center_y': .5}
-    do_default_tab: False
+class SettingsScreen(Screen):
+    pass
 
-    TabbedPanelItem:
-        text: 'first tab'
-        Label:
-            text: 'First tab content area'
-    TabbedPanelItem:
-        text: 'tab2'
-        BoxLayout:
-            Label:
-                text: 'Second tab content area'
-            Button:
-                text: 'Button that does nothing'
-    TabbedPanelItem:
-        text: 'tab3'
-        RstDocument:
-            text:
-                '\\n'.join(("Hello world", "-----------",
-                "You are in the third tab."))
-
-""")
-
-
-class Test(TabbedPanel):
+class ImageButton(ButtonBehavior, Image):
     pass
 
 
-class TabbedPanelApp(App):
+
+GUI = Builder.load_file("main.kv")
+class MainApp(App):
     def build(self):
-        return Test()
+        return GUI
 
+    def change_screen(self, screen_name):
+        screen_manager = self.root.ids["screen_manager"]
+        screen_manager.current = screen_name
 
-if __name__ == '__main__':
-    TabbedPanelApp().run()
+    def on_start(self):
+        grid_row = self.root.ids['home_screen'].ids['grid_row']
+        for row in range(0,5):
+            r = GridRow(shit="shit")
+            grid_row.add_widget(r)
+
+MainApp().run()

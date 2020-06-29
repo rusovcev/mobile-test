@@ -1,0 +1,80 @@
+#:import utils kivy.utils
+
+<HomeScreen>:
+#    Button:
+#        text:
+#            "Home"
+#        on_release:
+#            app.change_screen("settings_screen")
+    FloatLayout:
+        GridLayout:
+            canvas:
+                Color: 
+                    rgb: utils.get_color_from_hex("#3767c7")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            rows: 1
+            pos_hint: {"top": 1, "left": 1}
+            size_hint: 1, .1
+            Image:
+                source: "images/icons/phone.png"
+            Image:
+                source: "images/icons/phone.png"
+        GridLayout:
+            rows: 1
+            pos_hint: {"top": .9, "left": 1}
+            size_hint: 1, .2
+            Image:
+                source: "images/icons/phone.png"
+            Image:
+                source: "images/icons/phone.png"
+            Image:
+                source: "images/icons/phone.png"
+        Label:
+            pos_hint: {"top": .7, "left": 1}
+            size_hint: 1, .1
+            text: "Label 1"
+            id: lebel_1
+        ScrollView:
+            pos_hint: {"top": .6, "left": 1}
+            size_hint: 1, .4
+            GridLayout:
+                id: grid_row
+                cols: 1
+                spacing: 10, 10
+                size_hint_y: None
+                height: self.minimum_height
+                row_default_height: "100dp"
+                row_force_default: True
+                canvas:
+                    Color:
+                        rgb: utils.get_color_from_hex("#2737ff")
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+        GridLayout:
+            rows: 1
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#222222")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+            pos_hint: {"top": .2, "left": 1}
+            size_hint: 1, .2
+            ImageButton:
+                source: "images/icons/bitcoin.png"
+                on_release:
+                    print("RELEASED 1")
+            ImageButton:
+                source: "images/icons/bitcoin.png"
+                on_release:
+                    print("RELEASED 2")
+            ImageButton:
+                source: "images/icons/bitcoin.png"
+                on_release:
+                    print("RELEASED 3")
+                on_press:
+                    self.source = "images/icons/phone.png"
