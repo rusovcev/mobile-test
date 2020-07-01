@@ -7,7 +7,6 @@ from kivy.uix.label import Label
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.popup import Popup
 from kivy.uix.boxlayout import BoxLayout
-from kivy.core.window import Window
 from kivy.utils import get_color_from_hex
 from functools import partial
 from grid import Grid
@@ -32,7 +31,6 @@ class MainApp(App):
     favourites = []
 
     def build(self):
-        Window.bind(on_request_close=self.on_request_close)
         return GUI
 
     def change_screen(self, screen_name):
@@ -46,6 +44,16 @@ class MainApp(App):
         # self.test()
         # self.get_coinmarketcap()
         self.test2()
+    
+    def on_pause(self):
+        pass
+
+    def on_resume(self):
+        self.textpopup(title='Exit', text='Are you sure?')
+        pass
+
+    def on_stop(self):
+        pass
 
     def test(self):
         #  grid_row = self.root.ids['home_screen'].ids['grid_row']
@@ -100,10 +108,6 @@ class MainApp(App):
                 row = Grid(left_label_text=item['name'], right_label_text=str(item['quote']['USD']['price']))
                 grid_row.add_widget(row)
 
-    def on_request_close(self, *args):
-        self.textpopup(title='Exit', text='Are you sure?')
-        return True
-
     def textpopup(self, title='', text=''):
         """Open the pop-up with the name.
 
@@ -118,6 +122,7 @@ class MainApp(App):
         mybutton = Button(text='OK', size_hint=(1, 0.25))
         box.add_widget(mybutton)
         popup = Popup(title=title, content=box, size_hint=(None, None), size=(600, 300))
-        mybutton.bind(on_release=self.stop)
+        # mybutton.bind(on_release=self.stop)
         popup.open()
+
 MainApp().run()
