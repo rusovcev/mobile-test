@@ -1,6 +1,47 @@
+#:import utils kivy.utils
+
 <SettingsScreen>:
-    Button:
-        text:
-            "Settings"
-        on_release:
-            app.change_screen("home_screen")
+    FloatLayout:
+        GridLayout:
+            rows: 1
+            pos_hint: {"top": 1, "left": 1}
+            size_hint: 1, .1
+            canvas:
+                Color:
+                    rgb:
+                        utils.get_color_from_hex("#0f3fff")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        ScrollView:
+            pos_hint: {"top": .8, "left": 1}
+            size_hint: 1, .7
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#dfdfdf")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            GridLayout:
+                cols: 1
+                spacing: 10, 10
+                size_hint_y: None
+                height: self.minimum_height
+                row_default_height: "100dp"
+                row_force_default: True
+        GridLayout:
+            rows: 1
+            cols: 3
+            pos_hint: {"top": .1, "left": 1}
+            size_hint: 1, .1
+            canvas:
+                Color:
+                    rgb: 
+                        utils.get_color_from_hex("#ffff0f")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            ImageButton:
+                source: "images/icons/back.png"
+                on_release:
+                    app.change_screen("home_screen")

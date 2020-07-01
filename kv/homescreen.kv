@@ -1,5 +1,85 @@
 #:import utils kivy.utils
 
+<TabScreen>:
+    FloatLayout:
+        spacing: 10, 10
+        padding: 10
+        GridLayout:
+            rows: 1
+            cols: 3
+            pos_hint: {"top": 1, "left": 1}
+            size_hint: 1, .1
+            canvas:
+                Color:
+                    rgba: utils.get_color_from_hex("#ffff00ff")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+        TabbedPanel:
+            pos_hint: {"top": .9, "left": 1}
+            size_hint: 1, .8
+            tab_pos: "top_mid"
+            tab_width: self.width/3
+            do_default_tab: False
+            background_color: (255, 255, 255, 255)
+            # border: [0, 0, 0, 0]
+            canvas:
+                Color:
+                    rgba: utils.get_color_from_hex("#ffffffff")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            TabbedPanelStrip:
+                canvas:
+                    Color:
+                        rgba: (0,255,255,0)
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+            TabbedPanelItem:
+                # canvas:
+                #     Color:
+                #         rgba: (.0, .0, .0, .5)
+                #     Rectangle:
+                #         pos: self.pos
+                #         size: self.size
+                text: "All"
+                background_color: (3, 3, 3, 3)
+                color: (0, 0, 0, 1)
+                ScrollView:
+                    id: tabbed_scrollview
+                    GridLayout:
+                        id: grid_row
+                        # rows: 1
+                        cols: 1
+                        spacing: 10, 10
+                        padding: 10, 10
+                        size_hint_y: None
+                        height: self.minimum_height
+                        row_default_height: "100dp"
+                        row_force_default: True
+                        canvas:
+                            Color:
+                                rgb: utils.get_color_from_hex("#ffffffff")
+                            Rectangle:
+                                size: self.size
+            TabbedPanelItem:
+                text: "Favourites"
+                background_color: (3, 3, 3, 3)
+                color: (0, 0, 0, 1)
+        GridLayout:
+            rows: 1
+            cols: 3
+            pos_hint: {"top": .1, "left": 1}
+            size_hint: 1, .1
+            canvas:
+                Color:
+                    rgba: utils.get_color_from_hex("003fffff")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+
 <HomeScreen>:
 #    Button:
 #        text:
@@ -8,48 +88,67 @@
 #            app.change_screen("settings_screen")
     FloatLayout:
         GridLayout:
-            canvas:
-                Color: 
-                    rgb: utils.get_color_from_hex("#3767c7")
-                Rectangle:
-                    size: self.size
-                    pos: self.pos
+            cols: 4
             rows: 1
             pos_hint: {"top": 1, "left": 1}
             size_hint: 1, .1
+            padding: 10
+            spacing: 10
+            canvas:
+                Color:
+                    rgb: utils.get_color_from_hex("#2f7fff")
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            ImageButton:
+                source: "images/icons/settings.png"
+                on_release:
+                    app.change_screen("settings_screen")
+#                on_press:
+#                    self.source = "images/icons/phone.png"
             Image:
                 source: "images/icons/phone.png"
-            Image:
-                source: "images/icons/phone.png"
-        GridLayout:
-            rows: 1
-            pos_hint: {"top": .9, "left": 1}
-            size_hint: 1, .2
-            Image:
-                source: "images/icons/phone.png"
-            Image:
-                source: "images/icons/phone.png"
-            Image:
-                source: "images/icons/phone.png"
+#            Image:
+#                source: "images/icons/phone.png"
+#        GridLayout:
+#            rows: 1
+#            pos_hint: {"top": .9, "left": 1}
+#            size_hint: 1, .2
+#            Image:
+#                source: "images/icons/phone.png"
+#            Image:
+#                source: "images/icons/phone.png"
+#            Image:
+#                source: "images/icons/phone.png"
         Label:
-            pos_hint: {"top": .7, "left": 1}
+            pos_hint: {"top": .9, "left": 1}
             size_hint: 1, .1
             text: "Label 1"
-            id: lebel_1
+            color: 0, 0, 0, 1
+            id: home_screen_top_label
+            canvas.before:
+                Color: 
+                    rgba: utils.get_color_from_hex("#dfdfdf7f")
+                Rectangle:
+                    size: self.size
+                    pos:self.pos
+
         ScrollView:
-            pos_hint: {"top": .6, "left": 1}
-            size_hint: 1, .4
+            pos_hint: {"top": .8, "left": 1}
+            size_hint: 1, .7
+            id: scroll_view
             GridLayout:
-                id: grid_row
                 cols: 1
+                # id: grid_row
                 spacing: 10, 10
+                padding: 10, 10
                 size_hint_y: None
                 height: self.minimum_height
                 row_default_height: "100dp"
                 row_force_default: True
                 canvas:
                     Color:
-                        rgb: utils.get_color_from_hex("#2737ff")
+                        rgb: utils.get_color_from_hex("#dfdfdf")
                     Rectangle:
                         size: self.size
                         pos: self.pos
@@ -57,24 +156,24 @@
             rows: 1
             canvas:
                 Color:
-                    rgb: utils.get_color_from_hex("#222222")
+                    rgb: utils.get_color_from_hex("#ffff0f")
                 Rectangle:
                     size: self.size
                     pos: self.pos
 
-            pos_hint: {"top": .2, "left": 1}
-            size_hint: 1, .2
-            ImageButton:
-                source: "images/icons/bitcoin.png"
-                on_release:
-                    print("RELEASED 1")
-            ImageButton:
-                source: "images/icons/bitcoin.png"
-                on_release:
-                    print("RELEASED 2")
-            ImageButton:
-                source: "images/icons/bitcoin.png"
-                on_release:
-                    print("RELEASED 3")
-                on_press:
-                    self.source = "images/icons/phone.png"
+            pos_hint: {"top": .1, "left": 1}
+            size_hint: 1, .1
+#            ImageButton:
+#                source: "images/icons/bitcoin.png"
+#                on_release:
+#                    print("RELEASED 1")
+#            ImageButton:
+#                source: "images/icons/bitcoin.png"
+#                on_release:
+#                    print("RELEASED 2")
+#            ImageButton:
+#                source: "images/icons/bitcoin.png"
+#                on_release:
+#                    print("RELEASED 3")
+#                on_press:
+#                    self.source = "images/icons/phone.png"

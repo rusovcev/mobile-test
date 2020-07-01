@@ -1,13 +1,17 @@
 #:include kv/homescreen.kv
 #:include kv/settingsscreen.kv
+#:include kv/tabscreen.kv
 
 GridLayout:
     cols: 1
     ScreenManager:
         id: screen_manager
+        TabScreen:
+            name: "Tab_Screen"
+            id: tab_screen
         HomeScreen:
-            name: "home_screen"
+            name: "Home_Screen"
             id: home_screen
         SettingsScreen:
-            name: "settings_screen"
+            name: "Settings_Screen"
             id: settings_screen

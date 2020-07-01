@@ -5,29 +5,50 @@ from kivy.uix.image import Image
 from kivy.graphics import Color, Rectangle
 from kivy.utils import get_color_from_hex
 
-class GridRow(GridLayout):
-    rows = 1
+class Grid(GridLayout):
+    # rows = 1
+    cols = 2
 
     def __init__(self, **kwargs):
-        print(kwargs)
+        # print(kwargs)
 
-        super(GridRow, self).__init__()
-
+        super(Grid, self).__init__()
         # with self.canvas.before:
         #     Color(rgb=(get_color_from_hex("#555555")))
         #     Rectangle(size=self.size, pos=self.pos)
 
-        left = FloatLayout()
-        image = Image(source="images/icons/" + kwargs.get("left_image", "phone.png"), size_hint=(1, .8), pos_hint={"top": 1, "left": 1})
-        label = Label(text=kwargs.get("left_label", "n/a"), size_hint=(1, .2), pos_hint={"top": .1, "left": .1})
-        left.add_widget(image)
-        left.add_widget(label)
+        leftWidget = FloatLayout()
 
-        middle = FloatLayout()
-        image = Image(source="images/icons/" + kwargs.get("middle_image", "bitcoin.png"), size_hint=(1, .6), pos_hint={"top": 1, "left": 1})
-        label = Label(text=kwargs.get("middle_label", "middle"), size_hint=(1, .1), pos_hint={"top": 1, "left": .2})
-        middle.add_widget(image)
-        middle.add_widget(label)
+        leftImage = Image(
+            source="images/icons/" + kwargs.get("left_image_souce", "bitcoin.png"), 
+            size_hint=(.45, 1),
+            pos_hint={"top": 1, "left": .1})
 
-        self.add_widget(left)
-        self.add_widget(middle)
+        leftLabel = Label(
+            text=kwargs.get("left_label_text", "left text"), 
+            size_hint=(1, .5),
+            pos_hint={"top": 1, "left": .5},
+            color=get_color_from_hex("#0f0f0fff"))
+
+        leftWidget.add_widget(leftImage)
+        leftWidget.add_widget(leftLabel)
+
+        rightWidget = FloatLayout()
+
+        rightImage = Image(
+            source="images/icons/" + kwargs.get("right_image_source", "phone.png"), 
+            size_hint=(.4, 1), 
+            pos_hint={"top": 1, "right": 1})
+
+        rightLabel = Label(
+            text=kwargs.get("right_label_text", "right text"), 
+            size_hint=(1, .5),
+            pos_hint={"top": 1, "right": .5},
+            color=get_color_from_hex("#ff0000ff")
+        )
+
+        rightWidget.add_widget(rightImage)
+        rightWidget.add_widget(rightLabel)
+
+        self.add_widget(leftWidget)
+        self.add_widget(rightWidget)
