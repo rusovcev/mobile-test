@@ -8,7 +8,7 @@
 #            app.change_screen("settings_screen")
     FloatLayout:
         GridLayout:
-            cols: 4
+            cols: 3
             rows: 1
             pos_hint: {"top": 1, "left": 1}
             size_hint: 1, .1
@@ -17,9 +17,10 @@
             canvas:
                 Color:
                     rgb: utils.get_color_from_hex("#2f7fff")
-                Rectangle:
+                RoundedRectangle:
                     size: self.size
                     pos: self.pos
+                    radius: [20, 20, 0, 0]
             ImageButton:
                 source: "images/icons/settings.png"
                 on_release:
@@ -59,7 +60,7 @@
             id: scroll_view
             GridLayout:
                 cols: 1
-                # id: grid_row
+                id: grid_all
                 spacing: 10, 10
                 padding: 10, 10
                 size_hint_y: None
@@ -68,7 +69,7 @@
                 row_force_default: True
                 canvas:
                     Color:
-                        rgb: utils.get_color_from_hex("#dfdfdf")
+                        rgb: utils.get_color_from_hex("#dfdfdf0f")
                     Rectangle:
                         size: self.size
                         pos: self.pos
@@ -77,9 +78,10 @@
             canvas:
                 Color:
                     rgb: utils.get_color_from_hex("#ffff0f")
-                Rectangle:
+                RoundedRectangle:
                     size: self.size
                     pos: self.pos
+                    radius: [0, 0, 10, 10]
 
             pos_hint: {"top": .1, "left": 1}
             size_hint: 1, .1
