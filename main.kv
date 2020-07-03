@@ -1,5 +1,6 @@
 # #:include kv/tabscreen.kv
 #:include kv/homescreen.kv
+#:include kv/testscreen.kv
 
 GridLayout:
     cols: 1
@@ -8,6 +9,9 @@ GridLayout:
         # TabScreen:
         #     name: "Tab_Screen"
         #     id: tab_screen
+        TestScreen:
+            id: test_screen
+            name: "Test_Screen"
         HomeScreen:
             id: home_screen
             name: "Home_Screen"

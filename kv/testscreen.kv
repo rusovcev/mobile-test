@@ -1,0 +1,55 @@
+#:import utils kivy.utils
+
+<TestScreen>:
+    FloatLayout:
+        GridLayout:
+            cols: 2
+            size_hint: 1, .1
+            pos_hint: {"top": 1}
+            MyButton:
+                id: all_button
+                text: "[b]All[/b]"
+                font_size: "20dp"
+                markup: True
+                background_color: (255, 255, 255, 255)
+                background_normal: ""
+                background_down: ""
+                color: utils.get_color_from_hex("#000000ff")
+                on_release: app.checked_button("all")
+                line_color: utils.get_color_from_hex("#0000ffff") if self.active else utils.get_color_from_hex("#00000000")
+                canvas.before:
+                    Color:
+                        rgba: self.line_color
+                    Line:
+                        width: 3
+                        rectangle: self.x + self.width / 4, self.y, self.width / 2, 3
+            MyButton:
+                id: favourites_button
+                text: "Favourites"
+                font_size: "18dp"
+                markup: True
+                background_color: (255, 255, 255, 255)
+                background_normal: ""
+                background_down: ""
+                color: utils.get_color_from_hex("#000000af")
+                on_release: app.checked_button("favourites")
+                line_color: utils.get_color_from_hex("#0000ffff") if self.active else utils.get_color_from_hex("#00000000")
+                canvas.before:
+                    Color:
+                        rgba: self.line_color
+                        # rgba: utils.get_color_from_hex("#00000000")
+                    Line:
+                        width: 3
+                        rectangle: self.x + self.width / 4, self.y, self.width / 2, 3
+                        # rectangle: 1, 1, 2, 2
+    ScrollView:
+        size_hint: 1, .8
+        pos_hint: {"top": .9}
+        GridLayout:
+            cols: 1
+    FloatLayout:
+        GridLayout:
+            cols: 1
+            size_hint: 1, .1
+            Button:
+                text: "back"

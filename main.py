@@ -1,8 +1,10 @@
 from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.screenmanager import Screen
-from kivy.uix.button import ButtonBehavior
+from kivy.uix.button import ButtonBehavior, Button
+from kivy.graphics import Line, Color
 from kivy.uix.image import Image
+from kivy.properties import ListProperty, BooleanProperty
 from grid import GridAll
 
 # class TabScreen(Screen):
@@ -11,8 +13,15 @@ from grid import GridAll
 class HomeScreen(Screen):
     pass
 
+class TestScreen(Screen):
+    pass
+
 class ImageButton(ButtonBehavior, Image):
     pass
+
+class MyButton(Button):
+    line_color = ListProperty()
+    active = BooleanProperty(defaultvalue=False)
 
 GUI = Builder.load_file("main.kv")
 class MainApp(App):
@@ -39,6 +48,32 @@ class MainApp(App):
         for row in range(10):
             grid = GridAll(shit="happens", cols=3)
             grid_row.add_widget(grid)
+            pass
+    
+    def checked_button(self, button):
+        print(button, "pressed")
+        favourites_button = self.root.ids['test_screen'].ids["favourites_button"]
+        all_button = self.root.ids["test_screen"].ids["all_button"]
+        if button is "favourites":
+            favourites_button.active = True
+            all_button.active = False
+            favourites_button.text = "[b]FAVOURITES[/b]"
+            all_button.text = "All"
+            favourites_button.font_size = "22dp"
+            all_button.font_size = "18dp"
+            # favourites_button.background_color = (0, 0, 255, 255)
+            # all_button.background_color = (255, 255, 255, 255)
+                
+        elif button is "all":
+            favourites_button.active = False
+            all_button.active = True
+            favourites_button.text = "Favourites"
+            all_button.text = "[b]ALL[/b]"
+            favourites_button.font_size = "18dp"
+            all_button.font_size = "22dp"
+            # favourites_button.background_color = (255, 255, 255, 255)
+            # all_button.background_color = (0, 0, 255, 255)
+        else:
             pass
 
     # def test(self):
