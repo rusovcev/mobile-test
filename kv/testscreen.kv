@@ -1,55 +1,77 @@
 #:import utils kivy.utils
 
 <TestScreen>:
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex("#ffffff8f")
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [20, 20, 20, 20]
     FloatLayout:
+        spacing: 20,
         GridLayout:
             cols: 2
-            size_hint: 1, .1
+            size_hint: 1, .08
             pos_hint: {"top": 1}
             MyButton:
+                size_hint: 1, .5
                 id: all_button
-                text: "[b]All[/b]"
-                font_size: "20dp"
+                text: "[b]All Coins[/b]"
+                font_size: "18dp"
                 markup: True
-                background_color: (255, 255, 255, 255)
+                # background_color: utils.get_color_from_hex("#00ffff5f")
                 background_normal: ""
                 background_down: ""
-                color: utils.get_color_from_hex("#000000ff")
+                color: utils.get_color_from_hex("#000000af")
                 on_release: app.checked_button("all")
-                line_color: utils.get_color_from_hex("#0000ffff") if self.active else utils.get_color_from_hex("#00000000")
-                canvas.before:
+                line_color: utils.get_color_from_hex("#ff7f00ff") if self.active else utils.get_color_from_hex("#00000000")
+                canvas:
                     Color:
                         rgba: self.line_color
                     Line:
                         width: 3
-                        rectangle: self.x + self.width / 4, self.y, self.width / 2, 3
+                        rectangle: self.x + self.width / 3, self.y + 10, self.width / 3, 1
             MyButton:
                 id: favourites_button
                 text: "Favourites"
                 font_size: "18dp"
                 markup: True
-                background_color: (255, 255, 255, 255)
+                # background_color: (255, 255, 255, 255)
                 background_normal: ""
                 background_down: ""
                 color: utils.get_color_from_hex("#000000af")
                 on_release: app.checked_button("favourites")
-                line_color: utils.get_color_from_hex("#0000ffff") if self.active else utils.get_color_from_hex("#00000000")
-                canvas.before:
+                line_color: utils.get_color_from_hex("#ff7f00ff") if self.active else utils.get_color_from_hex("#00000000")
+                canvas:
                     Color:
                         rgba: self.line_color
-                        # rgba: utils.get_color_from_hex("#00000000")
                     Line:
                         width: 3
-                        rectangle: self.x + self.width / 4, self.y, self.width / 2, 3
-                        # rectangle: 1, 1, 2, 2
+                        rectangle: self.x + self.width / 3, self.y + 10, self.width / 3, 1
     ScrollView:
-        size_hint: 1, .8
-        pos_hint: {"top": .9}
+        size_hint: 1, .84
+        pos_hint: {"top": .92}
+        canvas.before:
+            Color:
+                rgba: utils.get_color_from_hex("#efefefff")
+            Rectangle:
+                size: self.size
+                pos: self.pos
         GridLayout:
+            id: main_grid
             cols: 1
+            spacing: 10, 10
+            padding: 10, 10
+            size_hint_y: None
+            # size_hint_x: None
+            height: self.minimum_height
+            row_default_height: "150dp"
+            row_force_default: True
     FloatLayout:
         GridLayout:
             cols: 1
-            size_hint: 1, .1
-            Button:
-                text: "back"
+            size_hint: 1, .08
+            pos_hint: {"top": .8}
+            # Button:
+            #     text: "back"

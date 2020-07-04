@@ -1,9 +1,19 @@
 # #:include kv/tabscreen.kv
 #:include kv/homescreen.kv
 #:include kv/testscreen.kv
+#:import utils kivy.utils
 
 GridLayout:
     cols: 1
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex("#ffaf00ff")
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [5, 5, 5, 5]
+    padding: 0, 10
+    # spacing: 10,10
     ScreenManager:
         id: screen_manager
         # TabScreen:
